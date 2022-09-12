@@ -10,14 +10,12 @@ app.use(require("./routes/database"));
 const dbo = require("./db/conn");
 
 async function cloneCollection(_db) {
-    _db.collection("content")
+    _db.collection("content-clone")
         .find({})
         .toArray(function (err, result) {
             if (err) throw err;
-            console.log(result);
             result.forEach(function (doc) {
-                console.log(doc);
-                _db.collection("content-clone").insertOne(doc);
+                _db.collection("content").insertOne(doc);
             });
         });
 }
