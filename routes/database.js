@@ -23,6 +23,16 @@ contentRoutes.route("/user").get(function (req, res) {
         });
 });
 
+// This section will help you get a single activity by id
+contentRoutes.route("/userid/:id").get(function (req, res) {
+    let db_connect = dbo.getDb();
+    let myquery = { _id: ObjectId(req.params.id) };
+    db_connect.collection("content").findOne(myquery, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
 // This section will help you get a single user by username
 contentRoutes.route("/user/:username").get(function (req, res) {
     let db_connect = dbo.getDb();
@@ -104,6 +114,7 @@ contentRoutes.route("/activity/add").post(function (req, response) {
     let myobj = {
         name: req.body.name,
         pages: [],
+        home: req.body.home,
     };
     db_connect.collection("content").insertOne(myobj, function (err, res) {
         if (err) throw err;
@@ -185,7 +196,7 @@ contentRoutes.route("/page/update/:id").post(function (req, response) {
 });
 
 // This section will help you delete a page
-contentRoutes.route("/activity/:id").delete((req, response) => {
+contentRoutes.route("/page/:id").delete((req, response) => {
     let db_connect = dbo.getDb();
     let myquery = { _id: ObjectId(req.params.id) };
 
