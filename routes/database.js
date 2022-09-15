@@ -33,6 +33,16 @@ contentRoutes.route("/user/:username").get(function (req, res) {
     });
 });
 
+// This section will help you get a single user by username
+contentRoutes.route("/userid/:id").get(function (req, res) {
+    let db_connect = dbo.getDb();
+    let myquery = { _id: ObjectId(req.params.id) };
+    db_connect.collection("content").findOne(myquery, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
 // This section will help you create a new user.
 contentRoutes.route("/user/add").post(function (req, response) {
     let db_connect = dbo.getDb();
