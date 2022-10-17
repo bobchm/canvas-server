@@ -76,6 +76,7 @@ contentRoutes.route("/user/update/:id").post(function (req, response) {
             username: req.body.username,
             fullName: req.body.fullName,
             activities: req.body.activities,
+            settings: req.body.settings,
         },
     };
 
