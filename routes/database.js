@@ -60,6 +60,7 @@ contentRoutes.route("/user/add").post(function (req, response) {
         username: req.body.username,
         fullName: req.body.fullName,
         activities: [],
+        settings: {},
     };
     db_connect.collection("content").insertOne(myobj, function (err, res) {
         if (err) throw err;
@@ -116,6 +117,7 @@ contentRoutes.route("/activity/add").post(function (req, response) {
         name: req.body.name,
         pages: [],
         home: req.body.home,
+        aspectRatio: req.body.aspectRatio,
     };
     db_connect.collection("content").insertOne(myobj, function (err, res) {
         if (err) throw err;
@@ -132,6 +134,7 @@ contentRoutes.route("/activity/update/:id").post(function (req, response) {
             name: req.body.name,
             pages: req.body.pages,
             home: ObjectId(req.body.home),
+            aspectRatio: req.body.aspectRatio,
         },
     };
 
