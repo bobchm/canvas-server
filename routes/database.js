@@ -14,6 +14,14 @@ const ObjectId = require("mongodb").ObjectId;
 // This section will help you get a list of all the users.
 contentRoutes.route("/user").get(function (req, res) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     db_connect
         .collection("content")
         .find({ username: { $exists: true } })
@@ -26,6 +34,14 @@ contentRoutes.route("/user").get(function (req, res) {
 // This section will help you get a single activity by id
 contentRoutes.route("/userid/:id").get(function (req, res) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
     db_connect.collection("content").findOne(myquery, function (err, result) {
         if (err) throw err;
@@ -36,6 +52,14 @@ contentRoutes.route("/userid/:id").get(function (req, res) {
 // This section will help you get a single user by username
 contentRoutes.route("/user/:username").get(function (req, res) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { username: req.params.username };
     db_connect.collection("content").findOne(myquery, function (err, result) {
         if (err) throw err;
@@ -46,6 +70,14 @@ contentRoutes.route("/user/:username").get(function (req, res) {
 // This section will help you get a single user by username
 contentRoutes.route("/userid/:id").get(function (req, res) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
     db_connect.collection("content").findOne(myquery, function (err, result) {
         if (err) throw err;
@@ -56,6 +88,14 @@ contentRoutes.route("/userid/:id").get(function (req, res) {
 // This section will help you create a new user.
 contentRoutes.route("/user/add").post(function (req, response) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myobj = {
         username: req.body.username,
         fullName: req.body.fullName,
@@ -71,6 +111,14 @@ contentRoutes.route("/user/add").post(function (req, response) {
 // This section will help you update a user by id.
 contentRoutes.route("/user/update/:id").post(function (req, response) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
     let newvalues = {
         $set: {
@@ -92,6 +140,14 @@ contentRoutes.route("/user/update/:id").post(function (req, response) {
 // This section will help you delete a user
 contentRoutes.route("/user/:id").delete((req, response) => {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
 
     db_connect.collection("content").deleteOne(myquery, function (err, obj) {
@@ -103,6 +159,14 @@ contentRoutes.route("/user/:id").delete((req, response) => {
 // This section will help you get a single activity by id
 contentRoutes.route("/activity/:id").get(function (req, res) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
     db_connect.collection("content").findOne(myquery, function (err, result) {
         if (err) throw err;
@@ -113,6 +177,14 @@ contentRoutes.route("/activity/:id").get(function (req, res) {
 // This section will help you create a new activity.
 contentRoutes.route("/activity/add").post(function (req, response) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myobj = {
         name: req.body.name,
         pages: [],
@@ -128,6 +200,14 @@ contentRoutes.route("/activity/add").post(function (req, response) {
 // This section will help you update an activity by id.
 contentRoutes.route("/activity/update/:id").post(function (req, response) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
     let newvalues = {
         $set: {
@@ -149,6 +229,14 @@ contentRoutes.route("/activity/update/:id").post(function (req, response) {
 // This section will help you delete an activity
 contentRoutes.route("/activity/:id").delete((req, response) => {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
 
     db_connect.collection("content").deleteOne(myquery, function (err, obj) {
@@ -160,6 +248,14 @@ contentRoutes.route("/activity/:id").delete((req, response) => {
 // This section will help you get a single page by id
 contentRoutes.route("/page/:id").get(function (req, res) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
     db_connect.collection("content").findOne(myquery, function (err, result) {
         if (err) throw err;
@@ -170,6 +266,14 @@ contentRoutes.route("/page/:id").get(function (req, res) {
 // This section will help you create a new page.
 contentRoutes.route("/page/add").post(function (req, response) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myobj = {
         name: req.body.name,
         content: req.body.content,
@@ -183,6 +287,14 @@ contentRoutes.route("/page/add").post(function (req, response) {
 // This section will help you update a page by id.
 contentRoutes.route("/page/update/:id").post(function (req, response) {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
     let newvalues = {
         $set: {
@@ -202,6 +314,14 @@ contentRoutes.route("/page/update/:id").post(function (req, response) {
 // This section will help you delete a page
 contentRoutes.route("/page/:id").delete((req, response) => {
     let db_connect = dbo.getDb();
+
+    // is the database ready??
+    if (!db_connect) {
+        response.status(503).json({ message: "Error - Mongo not ready" });
+        console.log("Mongo not ready");
+        return;
+    }
+
     let myquery = { _id: ObjectId(req.params.id) };
 
     db_connect.collection("content").deleteOne(myquery, function (err, obj) {
