@@ -190,6 +190,7 @@ contentRoutes.route("/activity/add").post(function (req, res) {
         pages: [],
         home: req.body.home,
         aspectRatio: req.body.aspectRatio,
+        behavior: req.body.behavior,
     };
     db_connect.collection("content").insertOne(myobj, function (err, result) {
         if (err) throw err;
