@@ -215,6 +215,7 @@ contentRoutes.route("/activity/update/:id").post(function (req, res) {
             pages: req.body.pages,
             home: ObjectId(req.body.home),
             aspectRatio: req.body.aspectRatio,
+            behavior: req.body.behavior,
         },
     };
 
