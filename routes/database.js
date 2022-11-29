@@ -188,8 +188,9 @@ contentRoutes.route("/activity/add").post(function (req, res) {
     let myobj = {
         name: req.body.name,
         pages: [],
+        version: req.body.version,
         home: req.body.home,
-        aspectRatio: req.body.aspectRatio,
+        vSize: req.body.vSize,
         behavior: req.body.behavior,
     };
     db_connect.collection("content").insertOne(myobj, function (err, result) {
@@ -214,8 +215,9 @@ contentRoutes.route("/activity/update/:id").post(function (req, res) {
         $set: {
             name: req.body.name,
             pages: req.body.pages,
+            version: req.body.version,
             home: ObjectId(req.body.home),
-            aspectRatio: req.body.aspectRatio,
+            vSize: req.body.vSize,
             behavior: req.body.behavior,
         },
     };
@@ -279,6 +281,7 @@ contentRoutes.route("/page/add").post(function (req, res) {
     let myobj = {
         name: req.body.name,
         content: req.body.content,
+        version: req.body.version,
     };
     db_connect.collection("content").insertOne(myobj, function (err, result) {
         if (err) throw err;
@@ -302,6 +305,7 @@ contentRoutes.route("/page/update/:id").post(function (req, res) {
         $set: {
             name: req.body.name,
             content: req.body.content,
+            version: req.body.version,
         },
     };
 
