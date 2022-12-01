@@ -187,6 +187,8 @@ contentRoutes.route("/activity/add").post(function (req, res) {
 
     let myobj = {
         name: req.body.name,
+        image: req.body.image,
+        description: req.body.description,
         pages: [],
         version: req.body.version,
         home: req.body.home,
@@ -214,6 +216,8 @@ contentRoutes.route("/activity/update/:id").post(function (req, res) {
     let newvalues = {
         $set: {
             name: req.body.name,
+            image: req.body.image,
+            description: req.body.description,
             pages: req.body.pages,
             version: req.body.version,
             home: ObjectId(req.body.home),
