@@ -194,6 +194,7 @@ contentRoutes.route("/activity/add").post(function (req, res) {
         home: req.body.home,
         vSize: req.body.vSize,
         behavior: req.body.behavior,
+        variables: req.body.variables,
     };
     db_connect.collection("content").insertOne(myobj, function (err, result) {
         if (err) throw err;
@@ -223,6 +224,7 @@ contentRoutes.route("/activity/update/:id").post(function (req, res) {
             home: ObjectId(req.body.home),
             vSize: req.body.vSize,
             behavior: req.body.behavior,
+            variables: req.body.variables,
         },
     };
 
